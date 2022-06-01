@@ -4,7 +4,7 @@ const App = () => {
       <div className='category-container'>
         {/* <img /> */}
         <div className='category-body-container'>
-          <h2>Hats jake</h2>
+          <h2>Hats jake laptop</h2>
           <p>Shop Now</p>
         </div>
       </div>
