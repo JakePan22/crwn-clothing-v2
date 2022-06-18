@@ -1,10 +1,11 @@
-import DirectoryMenu from "./components/directory/DirectoryMenu";
+import Home from "./routes/Home"
 
 const App = () => {
-
   return (
-    <DirectoryMenu/>
-  );
-};
+    <>
+      <Home />
+    </>
+  )
+}
 
-export default App;
+export default App
