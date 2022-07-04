@@ -1,10 +1,6 @@
 import { initializeApp } from "firebase/app"
-import {
-  getAuth,
-  signInWithRedirect,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyBwVGN05qhrAgtX2VelQ5EYagzk3kprPjM",
@@ -22,6 +18,35 @@ const provider = new GoogleAuthProvider()
 provider.setCustomParameters({
   prompt: "select_account",
 })
+
+const db = getFirestore()
+
+export const getUserFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, "users", userAuth.uid)
+
+  // now with the reference, we can try to get the document snapshot
+  const userDoc = await getDoc(userDocRef)
+
+  // if the doc does not exist, then set it
+  if (!userDoc.exists()) {
+    const { email, displayName } = userAuth
+    const createdAt = new Date()
+
+    try {
+      const newTest = await setDoc(userDocRef, {
+        email,
+        displayName,
+        createdAt,
+      })
+
+      return newTest
+    } catch (err) {
+      console.log("setting user data met an error:", err.message)
+    }
+  }
+
+  return userDoc
+}
 
 export const auth = getAuth()
 export const signInWithGooglePopup = () => {
