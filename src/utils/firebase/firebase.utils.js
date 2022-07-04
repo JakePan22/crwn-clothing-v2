@@ -45,6 +45,7 @@ export const getUserFromAuth = async (userAuth) => {
     }
   }
 
+  // TODO: Check on why I am returning userDoc when it doesn't exist and it returns null in that case
   return userDoc
 }
 
