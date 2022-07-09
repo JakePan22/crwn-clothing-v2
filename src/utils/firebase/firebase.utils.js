@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app"
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+} from "firebase/auth"
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -21,7 +26,10 @@ provider.setCustomParameters({
 
 const db = getFirestore()
 
-export const getUserFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInfomation
+) => {
   const userDocRef = doc(db, "users", userAuth.uid)
 
   // now with the reference, we can try to get the document snapshot
@@ -33,13 +41,14 @@ export const getUserFromAuth = async (userAuth) => {
     const createdAt = new Date()
 
     try {
-      const newTest = await setDoc(userDocRef, {
+      const newUserDoc = await setDoc(userDocRef, {
         email,
         displayName,
         createdAt,
+        ...additionalInfomation,
       })
 
-      return newTest
+      return newUserDoc
     } catch (err) {
       console.log("setting user data met an error:", err.message)
     }
@@ -52,4 +61,8 @@ export const getUserFromAuth = async (userAuth) => {
 export const auth = getAuth()
 export const signInWithGooglePopup = () => {
   return signInWithPopup(auth, provider)
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  return await createUserWithEmailAndPassword(auth, email, password)
 }
