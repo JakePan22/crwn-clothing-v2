@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Link, Outlet } from "react-router-dom"
 import "./navigation.styles.scss"
 
+import { UserContext } from "../../contexts/UserContext"
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg"
 
 const Navigation = () => {
+  const { currentUser } = useContext(UserContext)
+
   return (
     <>
       <div className="navigation">

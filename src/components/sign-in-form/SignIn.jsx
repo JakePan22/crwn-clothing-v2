@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 
 import FormInput from "../form-input/FormInput.jsx"
 import Button from "../button/Button.jsx"
@@ -7,6 +7,7 @@ import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils"
+import { UserContext } from "../../contexts/UserContext.js"
 
 import "./sign-in-form.styles.scss"
 
@@ -19,9 +20,12 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(signInDefault)
   const { email, password } = formFields
 
+  const { setCurrentUser } = useContext(UserContext)
+
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopup()
     await createUserDocumentFromAuth(user)
+    setCurrentUser(user)
   }
 
   const handleChange = (event) => {
@@ -33,8 +37,10 @@ const SignIn = () => {
     event.preventDefault()
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password)
+      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
       setFormFields(signInDefault)
+
+      setCurrentUser(user)
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":
@@ -79,7 +85,7 @@ const SignIn = () => {
 
             <div className="buttons-container">
               <Button type="submit">Submit</Button>
-              <Button buttonType="google" onClick={logGoogleUser}>
+              <Button type="button" buttonType="google" onClick={logGoogleUser}>
                 Google sign in
               </Button>
             </div>
