@@ -6,7 +6,7 @@ import "./index.scss"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { UserProvider } from "./contexts/UserContext"
-import { ProductProvider } from "./contexts/ProductContext"
+import { ProductProvider } from "./contexts/ProductsContext"
 
 ReactDOM.render(
   <React.StrictMode>
