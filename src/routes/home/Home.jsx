@@ -4,6 +4,7 @@ import React from "react"
 import DirectoryMenu from "../../components/directory/DirectoryMenu"
 import Navigation from "../../components/navigation/Navigation"
 import Authentication from "../authentication/Authentication"
+import Shop from "../shop/Shop"
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <Route path="/" element={<Navigation />}>
           <Route index element={<DirectoryMenu />} />
           <Route path="auth" element={<Authentication />} />
+          <Route path="shop" element={<Shop />} />
         </Route>
       </Routes>
     </>
