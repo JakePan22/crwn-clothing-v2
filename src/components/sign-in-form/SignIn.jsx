@@ -7,7 +7,6 @@ import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils"
-import { UserContext } from "../../contexts/UserContext.js"
 
 import "./sign-in-form.styles.scss"
 
@@ -20,12 +19,8 @@ const SignIn = () => {
   const [formFields, setFormFields] = useState(signInDefault)
   const { email, password } = formFields
 
-  const { setCurrentUser } = useContext(UserContext)
-
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup()
-    await createUserDocumentFromAuth(user)
-    setCurrentUser(user)
+    await signInWithGooglePopup()
   }
 
   const handleChange = (event) => {
@@ -37,10 +32,8 @@ const SignIn = () => {
     event.preventDefault()
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+      await signInAuthUserWithEmailAndPassword(email, password)
       setFormFields(signInDefault)
-
-      setCurrentUser(user)
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":
