@@ -6,12 +6,15 @@ import "./index.scss"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { UserProvider } from "./contexts/UserContext"
+import { ProductProvider } from "./contexts/ProductContext"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductProvider>
+          <App />
+        </ProductProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
