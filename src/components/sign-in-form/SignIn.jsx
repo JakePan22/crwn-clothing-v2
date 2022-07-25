@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 
 import FormInput from "../form-input/FormInput.jsx"
 import Button from "../button/Button.jsx"
@@ -20,8 +20,7 @@ const SignIn = () => {
   const { email, password } = formFields
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup()
-    await createUserDocumentFromAuth(user)
+    await signInWithGooglePopup()
   }
 
   const handleChange = (event) => {
@@ -79,7 +78,7 @@ const SignIn = () => {
 
             <div className="buttons-container">
               <Button type="submit">Submit</Button>
-              <Button buttonType="google" onClick={logGoogleUser}>
+              <Button type="button" buttonType="google" onClick={logGoogleUser}>
                 Google sign in
               </Button>
             </div>
