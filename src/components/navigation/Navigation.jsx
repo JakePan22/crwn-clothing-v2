@@ -1,11 +1,12 @@
 import React, { useContext } from "react"
 import { Link, Outlet } from "react-router-dom"
-import "./navigation.styles.scss"
 
-import { UserContext } from "../../contexts/UserContext"
+import "./navigation.styles.scss"
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg"
 
+import { UserContext } from "../../contexts/UserContext"
 import { signOutUser } from "../../utils/firebase/firebase.utils"
+import CartIcon from "../cart-icon/CartIcon"
 
 const Navigation = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext)
@@ -35,6 +36,8 @@ const Navigation = () => {
               Sign In
             </Link>
           )}
+
+          <CartIcon />
         </div>
       </div>
       <Outlet />
