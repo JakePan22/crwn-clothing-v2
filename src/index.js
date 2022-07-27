@@ -7,14 +7,17 @@ import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { UserProvider } from "./contexts/UserContext"
 import { ProductProvider } from "./contexts/ProductsContext"
+import { CartProvider } from "./contexts/CartContext"
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <ProductProvider>
-          <App />
-        </ProductProvider>
+        <CartProvider>
+          <ProductProvider>
+            <App />
+          </ProductProvider>
+        </CartProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
