@@ -67,7 +67,10 @@ export const CartProvider = ({ children }) => {
       0
     )
     setCartNumber(newCartNumber)
+  }, [cartItems])
 
+  useEffect(() => {
+    // when cartItems is updated, then update the shopping cart amount
     const newCartAmount = cartItems.reduce(
       (total, item) => total + item.quantity * item.price,
       0
