@@ -30,17 +30,17 @@ const removeCartItem = (cartItems, productToRemove) => {
   // if current quantity > 1, reduce quantity
   // else remove product
 
-  for (const item of cartItems) {
-    if (item.id === productToRemove.id) {
-      if (item.quantity > 1) {
-        item.quantity = item.quantity - 1
-        return [...cartItems]
-      }
+  const existingCartItem = cartItems.find(
+    (item) => item.id === productToRemove.id
+  )
 
-      const newCartItems = removeProduct(cartItems, productToRemove)
-      return newCartItems
-    }
+  if (existingCartItem.quantity > 1) {
+    existingCartItem.quantity = existingCartItem.quantity - 1
+    return [...cartItems]
   }
+
+  const newCartItems = removeProduct(cartItems, productToRemove)
+  return newCartItems
 }
 
 export const CartContext = createContext({
@@ -103,6 +103,3 @@ export const CartProvider = ({ children }) => {
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
-
-// i need a new function to create a new array of the cart items
-// then i add it into my setter function
