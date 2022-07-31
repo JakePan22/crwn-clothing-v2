@@ -5,6 +5,7 @@ import DirectoryMenu from "../../components/directory/DirectoryMenu"
 import Navigation from "../../components/navigation/Navigation"
 import Authentication from "../authentication/Authentication"
 import Shop from "../shop/Shop"
+import Checkout from "../checkout/Checkout"
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
           <Route index element={<DirectoryMenu />} />
           <Route path="auth" element={<Authentication />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </>
