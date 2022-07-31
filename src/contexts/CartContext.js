@@ -103,6 +103,3 @@ export const CartProvider = ({ children }) => {
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
-
-// i need a new function to create a new array of the cart items
-// then i add it into my setter function
