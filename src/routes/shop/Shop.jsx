@@ -4,7 +4,7 @@ import ProductCard from "../../components/product-card/ProductCard"
 
 import "./shop-styles.scss"
 
-const Shop = ({}) => {
+const Shop = () => {
   const { products } = useContext(ProductsContext)
 
   return (
