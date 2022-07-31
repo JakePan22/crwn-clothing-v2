@@ -17,4 +17,3 @@ const CartItem = ({ cartItem }) => {
 }
 
 export default CartItem
-// to do fill up this cart item
