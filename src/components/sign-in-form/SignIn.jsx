@@ -1,14 +1,13 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 
 import FormInput from "../form-input/FormInput.jsx"
 import Button from "../button/Button.jsx"
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils"
 
-import "./sign-in-form.styles.scss"
+import { SignInContainer, ButtonsContainer } from "./sign-in-form.styles"
 
 const signInDefault = {
   email: "",
@@ -52,7 +51,7 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="sign-in-container">
+      <SignInContainer>
         <h2>Already have an account?</h2>
         <span>Sign in with your email and password</span>
 
@@ -76,15 +75,15 @@ const SignIn = () => {
               value={password}
             />
 
-            <div className="buttons-container">
+            <ButtonsContainer>
               <Button type="submit">Submit</Button>
               <Button type="button" buttonType="google" onClick={logGoogleUser}>
                 Google sign in
               </Button>
-            </div>
+            </ButtonsContainer>
           </form>
         </div>
-      </div>
+      </SignInContainer>
     </>
   )
 }
