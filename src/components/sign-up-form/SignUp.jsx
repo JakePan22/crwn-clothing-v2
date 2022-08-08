@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 
 import FormInput from "../form-input/FormInput.jsx"
 import Button from "../button/Button.jsx"
@@ -8,7 +8,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils"
 
-import "./sign-up-form.styles.scss"
+import { SignUpContainer } from "./sign-up-form.styles"
 
 const signUpDefault = {
   displayName: "",
@@ -51,7 +51,7 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="sign-up-container">
+      <SignUpContainer>
         <h2>Don't have an account?</h2>
         <span>Sign up with your email and password</span>
 
@@ -96,7 +96,7 @@ const SignUp = () => {
             </div>
           </form>
         </div>
-      </div>
+      </SignUpContainer>
     </>
   )
 }
